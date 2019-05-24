@@ -253,7 +253,7 @@ public class MenuManager
 			}
 		}
 
-		client.setMenuEntries(copy.toArray(new MenuEntry[0]));
+//		client.setMenuEntries(copy.toArray(new MenuEntry[0]));
 	}
 
 	public void addPlayerMenuItem(String menuText)

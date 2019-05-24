@@ -219,7 +219,31 @@ public class ClientLoader
 				target.close();
 				log.info("Patched {} classes", patchCount);
 			}
+			Map<String, byte[]> injectedClient = new HashMap<>();
+			JarInputStream jis = new JarInputStream(new FileInputStream("./InjectedClient.jar"));
+			byte[] tmp = new byte[4096];
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream(756 * 1024);
+			for (; ; )
+			{
+				JarEntry metadata = jis.getNextJarEntry();
+				if (metadata == null)
+				{
+					break;
+				}
 
+				buffer.reset();
+				for (; ; )
+				{
+					int n = jis.read(tmp);
+					if (n <= -1)
+					{
+						break;
+					}
+					buffer.write(tmp, 0, n);
+				}
+
+				injectedClient.put(metadata.getName(), buffer.toByteArray());
+			}
 			log.info("Patching for RuneLitePlus");
 
 			if (updateCheckMode == AUTO)
@@ -242,15 +266,11 @@ public class ClientLoader
 					patches.put(file.getKey(), patchClass);
 				}
 
-				new MixinRunner(zipFile, patches).run();
+				new MixinRunner(injectedClient, patches).run();
 
 			}
-
-			Map<String, byte[]> injectedClient = new HashMap<>();
-			JarInputStream jis = new JarInputStream(new FileInputStream("./injectedClient.jar"));
-
-			byte[] tmp = new byte[4096];
-			ByteArrayOutputStream buffer = new ByteArrayOutputStream(756 * 1024);
+			tmp = new byte[4096];
+			buffer = new ByteArrayOutputStream(756 * 1024);
 			for (; ; )
 			{
 				JarEntry metadata = jis.getNextJarEntry();

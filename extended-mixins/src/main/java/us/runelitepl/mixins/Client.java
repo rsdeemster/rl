@@ -351,14 +351,15 @@ public class Client
 	}
 
 	@Overwrite
-	public void checkClickbox(net.runelite.api.Model model, int n2, int n3, int n4, int n5, int n6, int n7, int n8, int n9, long l2)
+	public void checkClickbox(Object model, int n2, int n3, int n4, int n5, int n6, int n7, int n8, int n9, long l2)
 	{
 		int n10;
 		int n11;
 		int n12;
 		int n13;
 		int n14;
-		net.runelite.rs.api.RSModel rSModel = (net.runelite.rs.api.RSModel) model;
+		net.runelite.api.Model rlModel = (net.runelite.api.Model) model;
+		net.runelite.rs.api.RSModel rSModel = (net.runelite.rs.api.RSModel) rlModel;
 		boolean bl2 = l2 != 0L && (int) (l2 >>> 16 & 1L) != 1;
 		boolean bl3 = INSTANCE.getViewportContainsMouse();
 		if (!bl2)

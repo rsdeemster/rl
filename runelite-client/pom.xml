@@ -220,6 +220,12 @@
 			<artifactId>extended-mixins</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>net.runelite.rs</groupId>
+			<artifactId>runescape-api</artifactId>
+			<version>${project.version}</version>
+			<scope>runtime</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -334,7 +340,7 @@
 								</filter>
 								<filter>
 									<!-- net.runelit:client-patch -->
-									<artifact>net.runelite:client-patch</artifact>
+									<artifact>net.runelit:client-patch</artifact>
 									<includes>
 										<include>**</include>
 									</includes>

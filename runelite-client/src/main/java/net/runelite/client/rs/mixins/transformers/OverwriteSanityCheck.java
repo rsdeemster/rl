@@ -79,7 +79,8 @@ public class OverwriteSanityCheck extends SanityChecker implements Opcodes
 
 		if (!methodsUsed.contains(check))
 		{
-			throw new RuntimeException("[OverwriteSanity] Overwrite target not found: " + check);
+			System.out.println("[OverwriteSanity] Overwrite target not found: "+ check);
+			//throw new RuntimeException("[OverwriteSanity] Overwrite target not found: " + check);
 		}
 		return super.visitMethod(access, name, descriptor, signature, exceptions);
 	}
